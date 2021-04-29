@@ -1,0 +1,7 @@
+name: Lobby
+version: 2.0
+main: fr.lesnoobs.lobby.Main
+author: WaiFou
+commands:
+  menu:
+    description: Commande Menu
