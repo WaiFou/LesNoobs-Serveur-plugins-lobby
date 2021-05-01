@@ -78,8 +78,13 @@ public class Jump {
 	
 	public static void plaque_checkpoint(Player p) {
 		Functions.hotbarMessage(p, "Téléportation au point de sauvegarde");
-		if(playerOnJump.get(p)==2) {
-			p.teleport(new Location(p.getWorld(), 3.5, 11, 15.5, -90, 0)); 
+		if(tasks.containsKey(p)) {
+			if(playerOnJump.get(p)==2) {
+				p.teleport(new Location(p.getWorld(), 3.5, 11, 15.5, -90, 0)); 
+			}
+			else {
+				p.teleport(new Location(p.getWorld(), 12.5, 5, -19.5, -35, 0));
+			}
 		}
 		else {
 			p.teleport(new Location(p.getWorld(), 12.5, 5, -19.5, -35, 0));
@@ -88,8 +93,10 @@ public class Jump {
 	
 	public static void plaque_restart(Player p) {
 		playerOnJump.remove(p);
-		tasks.get(p).cancel();
-		tasks.remove(p);
+		if(tasks.containsKey(p)) {
+			tasks.get(p).cancel();
+			tasks.remove(p);
+		}
 		p.teleport(new Location(p.getWorld(), 12.5, 5, -19.5, -35, 0)); 
 		Functions.hotbarMessage(p, "Parkour recommencé");
 	}
